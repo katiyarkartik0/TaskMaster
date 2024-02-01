@@ -19,7 +19,7 @@ const HomePage = () => {
     return (
       <div className="App">
         <div className="nav">
-          <h1>Todo App Dashboard</h1>
+          <h1 className="app-title">Task Master</h1>
           <Button
             text={"Logout " + userData.name}
             onClickEvent={handleLogout}

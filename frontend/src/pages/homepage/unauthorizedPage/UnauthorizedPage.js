@@ -11,7 +11,7 @@ const UnauthorizedPage = () => {
       <p className="prompt-text">
         You are not authorized to access this page. Please log in to continue.
       </p>
-      <button className="go-back-btn" onClick={() => navigate("/")}>
+      <button className="go-back-btn" onClick={() => navigate("/auth")}>
         Go Back
       </button>
     </div>
