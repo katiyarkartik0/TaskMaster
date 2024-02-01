@@ -79,7 +79,8 @@ export const OnBoarding = () => {
     if (newIndex < 0) {
       newIndex = 0;
     } else if (newIndex >= items.length) {
-      navigate("/")
+      newIndex = items.length - 1;
+      navigate("/auth");
     }
     setActiveIndex(newIndex);
   };
@@ -94,7 +95,7 @@ export const OnBoarding = () => {
             return <OnBoardingItem item={item} width={"100%"} />;
           })}
         </div>
-        <Button text={"Skip onboarding"} onClickEvent={() => navigate("/auth")} />
+        <Button text={"Skip onboarding"} onClickEvent={() => navigate("/")} />
 
         <div className="carousel-buttons">
           <button
