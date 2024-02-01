@@ -17,6 +17,7 @@
   background-color: #3498db;
   color: #fff;
   padding: 15px;
+  flex-wrap: wrap;
 }
 
 .card-title {

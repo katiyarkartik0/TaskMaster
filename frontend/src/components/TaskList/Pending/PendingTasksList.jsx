@@ -125,7 +125,7 @@ const PendingTasksList = ({ pendingTasks, handleTaskDelete }) => {
       </div>
       <div className="card-content">
         <p className="card-text">
-          {pendingTasks.map((task) => {
+          {tasks.map((task) => {
             const { taskSignature } = task;
             return (
               <Task

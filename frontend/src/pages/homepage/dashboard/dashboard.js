@@ -83,6 +83,24 @@ const Dashboard = () => {
 
   return (
     <div>
+      <div className="tasks-number-completed-card">
+        <div className="tasks-card">
+          <div className="card-content">
+            <h2 className="card-title">Completed Tasks</h2>
+            <p className="tasks-count">
+              {completedAndPendingTasks.completedTasks.length}
+            </p>
+          </div>
+        </div>
+        <div className="tasks-card">
+          <div className="card-content">
+            <h2 className="card-title">Incomplete Tasks</h2>
+            <p className="tasks-count">
+              {completedAndPendingTasks.pendingTasks.length}
+            </p>
+          </div>
+        </div>
+      </div>
       <div className="dashboard">
         <CreateTask onTaskCreate={handleTaskCreate} />
         <PieChart
