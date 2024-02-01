@@ -1,0 +1,77 @@
+.task {
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-title {
+  margin: 0;
+}
+
+.task-description {
+  margin-top: 10px;
+}
+
+.manipulateTask {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.taskNav{
+  display: flex;
+  align-items: center;
+  width: 50%;
+  gap: 20px; /* Set the desired gap between divs */
+}
+
+.status-select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #fff; /* Background color when not focused */
+  transition: border-color 0.3s, background-color 0.3s;
+  margin-left: 5px;
+}
+
+.status-select:focus {
+  outline: none; /* Remove the default focus outline */
+  border-color: #007bff; /* Border color when focused */
+  background-color: #f5f5f5; /* Background color when focused */
+}
+
+/* Style the <option> elements */
+.status-option {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #fff; /* Background color of options */
+  color: #333; /* Text color of options */
+}
+
+.status-option:hover {
+  background-color: #007bff; /* Background color of options on hover */
+  color: #fff; /* Text color of options on hover */
+}
+
+@media (max-width: 700px) {
+  .task-header{
+    flex-direction: column;
+  }
+}
+
+@media(max-width:500px){
+  .manipulateTask{
+    flex-direction: column;
+    justify-content: space-between;
+    height: 150px;
+  }
+}
