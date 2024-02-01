@@ -20,6 +20,7 @@ const Calendar = ({
   console.log(dayjs("01-02-2024"));
 
   useEffect(() => {
+    setTaskDueDate(dueDate)
     setDate(getDefaultDate(dueDate));
   }, []);
 

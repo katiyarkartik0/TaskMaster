@@ -1,16 +1,23 @@
 import CreateTask from "components/CreateTask/CreateTask";
 import Task from "components/Task.js/Task";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useMemo } from "react";
 import "./dashboard.css";
 import { fetchTasks } from "api/task";
 import { useSelector } from "react-redux";
 import { getAccessToken } from "helpers/selector";
 import { Loader } from "utils/Loader/Loader";
+import CompletedTasksList from "components/TaskList/Completed/CompletedTasksList";
+import PendingTasksList from "components/TaskList/Pending/PendingTasksList";
+import { PieChart } from "@mui/x-charts/PieChart";
 
 const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(false);
   const accessToken = useSelector(getAccessToken);
+  const [chartData, setChartData] = useState({
+    completedTasks: 0,
+    pendingTasks: 0,
+  });
 
   useEffect(() => {
     const getTasks = async () => {
@@ -44,64 +51,61 @@ const Dashboard = () => {
     );
   };
 
-  const renderTasks = useCallback(() => {
+  const completedAndPendingTasks = useMemo(() => {
     const completedTasks = [];
     const pendingTasks = [];
     tasks.forEach((task) => {
-      const { isCompleted, taskSignature } = task;
+      const { isCompleted } = task;
       if (isCompleted) {
-        completedTasks.push(
-          <Task
-            key={taskSignature}
-            task={task}
-            status="Completed"
-            onTaskDelete={handleTaskDelete}
-          />
-        );
+        completedTasks.push(task);
       } else {
-        pendingTasks.push(
-          <Task
-            key={taskSignature}
-            task={task}
-            status="Pending"
-            onTaskDelete={handleTaskDelete}
-          />
-        );
+        pendingTasks.push(task);
       }
     });
+    return { completedTasks, pendingTasks };
+  }, [tasks]);
+
+  const renderTasks = useCallback(() => {
+    const { completedTasks, pendingTasks } = completedAndPendingTasks;
     return (
       <div className="task-list">
-        <div className="card">
-          <div className="card-header">
-            <h3 className="card-title">Pending Tasks</h3>
-          </div>
-          <div className="card-content">
-            <p className="card-text">{pendingTasks}</p>
-          </div>
-          <div className="card-footer">
-            <button className="btn">Read More</button>
-          </div>
-        </div>
-        <div className="card">
-          <div className="card-header">
-            <h3 className="card-title">Completed Tasks</h3>
-          </div>
-          <div className="card-content">
-            <p className="card-text">{completedTasks}</p>
-          </div>
-          <div className="card-footer">
-            <button className="btn">Read More</button>
-          </div>
-        </div>
-        
-        {/* {[...pendingTasks, ...completedTasks]} */}
+        <CompletedTasksList
+          completedTasks={completedTasks}
+          handleTaskDelete={handleTaskDelete}
+        />
+        <PendingTasksList
+          pendingTasks={pendingTasks}
+          handleTaskDelete={handleTaskDelete}
+        />
       </div>
     );
   }, [tasks]);
 
   return (
-    <div className="dashboard">
-      <CreateTask onTaskCreate={handleTaskCreate} />
+    <div>
+      <div className="dashboard">
+        <CreateTask onTaskCreate={handleTaskCreate} />
+        <PieChart
+          series={[
+            {
+              data: [
+                {
+                  id: 0,
+                  value: completedAndPendingTasks.completedTasks.length,
+                  label: "Completed Tasks",
+                },
+                {
+                  id: 1,
+                  value: completedAndPendingTasks.pendingTasks.length,
+                  label: "Pending Tasks",
+                },
+              ],
+            },
+          ]}
+          width={600}
+          height={200}
+        />
+      </div>
       <br></br>
       {loading ? renderTasks() : <Loader />}
     </div>

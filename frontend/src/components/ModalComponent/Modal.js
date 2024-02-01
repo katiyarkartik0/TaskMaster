@@ -9,13 +9,15 @@ import { updateTask } from "api/task";
 import pendingClock from "utils/icons/pendingClock.png";
 import completed from "utils/icons/completedIcon.png";
 import Calendar from "components/Calendar/Calendar";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 export const Modal = ({ toggleModal, task, status }) => {
-  const { title, description, isCompleted, dueDate } = task;
+  const { title, description, isCompleted, dueDate, priority } = task;
   const [taskTitle, setTaskTitle] = useState(title);
   const [taskDescription, setTaskDescription] = useState(description);
   const [taskDueDate, setTaskDueDate] = useState(dueDate);
   const [currentStatus, setCurrentStatus] = useState(status);
+  const [taskPriority, setTaskPriority] = useState(priority);
 
   const accessToken = useSelector(getAccessToken);
   const handleClick = () => {
@@ -37,6 +39,7 @@ export const Modal = ({ toggleModal, task, status }) => {
       description: taskDescription,
       isCompleted: currentStatus === "Completed" ? true : false,
       dueDate: taskDueDate,
+      priority: taskPriority,
     };
     await updateTask({
       accessToken,
@@ -51,17 +54,41 @@ export const Modal = ({ toggleModal, task, status }) => {
         <div className="modal-background" id="modalBackground">
           <div className="modal" id="modal">
             <div className="modal-content">
-              <img
-                src={currentStatus === "Completed" ? completed : pendingClock}
-                width="20px"
-              />
-              <span
-                className="close-btn"
-                id="closeModalBtn"
-                onClick={handleClick}
-              >
-                &times;
-              </span>
+              <div className="modal-header">
+                <img
+                  src={currentStatus === "Completed" ? completed : pendingClock}
+                  width="20px"
+                />
+                <div className="modal-priority">
+                  <FormControl>
+                    <InputLabel id="demo-simple-select-label">
+                      Priority
+                    </InputLabel>
+                    <Select
+                      sx={{
+                        maxWidth: 200,
+                      }}
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={taskPriority}
+                      label="Priority"
+                      onChange={(e) => setTaskPriority(e.target.value)}
+                    >
+                      <MenuItem value={1}>1 (High)</MenuItem>
+                      <MenuItem value={2}>2 (Medium)</MenuItem>
+                      <MenuItem value={3}>3 (Low)</MenuItem>
+                    </Select>
+                  </FormControl>
+                </div>
+                <span
+                  className="close-btn"
+                  id="closeModalBtn"
+                  onClick={handleClick}
+                >
+                  &times;
+                </span>
+              </div>
+
               <form id="roomForm">
                 <label for="taskTitle">Task Title</label>
                 <input

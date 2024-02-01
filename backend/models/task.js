@@ -6,13 +6,14 @@ const taskSchema = mongoose.Schema(
     title: { type: String, required: true },
     description: { type: String },
     isCompleted: { type: Boolean, required: true },
+    priority: { type: Number, required: true, default: 3 },
     dueDate: {
       year: { type: Number, required: true },
       month: { type: Number, required: true },
       day: { type: Number, required: true },
     },
   },
-  { timestaps: true }
+  { timestamps: true }
 );
 
 const Task = mongoose.model("Task", taskSchema);
