@@ -8,11 +8,13 @@ import { updateTask } from "api/task";
 
 import pendingClock from "utils/icons/pendingClock.png";
 import completed from "utils/icons/completedIcon.png";
+import Calendar from "components/Calendar/Calendar";
 
 export const Modal = ({ toggleModal, task, status }) => {
-  const { title, description, isCompleted } = task;
+  const { title, description, isCompleted, dueDate } = task;
   const [taskTitle, setTaskTitle] = useState(title);
   const [taskDescription, setTaskDescription] = useState(description);
+  const [taskDueDate, setTaskDueDate] = useState(dueDate);
   const [currentStatus, setCurrentStatus] = useState(status);
 
   const accessToken = useSelector(getAccessToken);
@@ -34,6 +36,7 @@ export const Modal = ({ toggleModal, task, status }) => {
       title: taskTitle,
       description: taskDescription,
       isCompleted: currentStatus === "Completed" ? true : false,
+      dueDate: taskDueDate,
     };
     await updateTask({
       accessToken,
@@ -100,6 +103,8 @@ export const Modal = ({ toggleModal, task, status }) => {
                   onChange={(e) => setTaskDescription(e.target.value)}
                   className="task-description-input"
                 />
+                <br></br>
+                <Calendar dueDate={dueDate} setTaskDueDate={setTaskDueDate} />
                 <br></br>
                 <Button
                   type="submit"

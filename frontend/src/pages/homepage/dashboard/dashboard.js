@@ -71,26 +71,26 @@ const Dashboard = () => {
     });
     return (
       <div className="task-list">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Pending Tasks</h3>
+        <div className="card">
+          <div className="card-header">
+            <h3 className="card-title">Pending Tasks</h3>
           </div>
-          <div class="card-content">
-            <p class="card-text">{pendingTasks}</p>
+          <div className="card-content">
+            <p className="card-text">{pendingTasks}</p>
           </div>
-          <div class="card-footer">
-            <button class="btn">Read More</button>
+          <div className="card-footer">
+            <button className="btn">Read More</button>
           </div>
         </div>
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Completed Tasks</h3>
+        <div className="card">
+          <div className="card-header">
+            <h3 className="card-title">Completed Tasks</h3>
           </div>
-          <div class="card-content">
-            <p class="card-text">{completedTasks}</p>
+          <div className="card-content">
+            <p className="card-text">{completedTasks}</p>
           </div>
-          <div class="card-footer">
-            <button class="btn">Read More</button>
+          <div className="card-footer">
+            <button className="btn">Read More</button>
           </div>
         </div>
         

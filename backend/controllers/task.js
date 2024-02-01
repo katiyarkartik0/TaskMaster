@@ -19,13 +19,16 @@ const createTask = async (req, res) => {
     return res.status(403).json({ msg: req.msg });
   }
   const userId = req.id;
-  const { taskSignature, title, description } = req.body;
+  const { taskSignature, title, description, dueDate } = req.body;
   const task = new Task({
     taskSignature,
     title,
     description,
     isCompleted: false,
+    dueDate,
   });
+
+  console.log(task);
 
   try {
     const { _id: latestTaskId } = await task.save();
@@ -44,7 +47,7 @@ const updateTask = async (req, res) => {
   if (req.verified == false) {
     return res.status(403).json({ msg: req.msg });
   }
-  const { taskSignature, title, description, isCompleted } = req.body;
+  const { taskSignature, title, description, isCompleted, dueDate } = req.body;
 
   try {
     const { _id: taskId } = await Task.findOne({ taskSignature });
@@ -53,6 +56,7 @@ const updateTask = async (req, res) => {
       title,
       description,
       isCompleted,
+      dueDate
     });
 
     return res.status(200).json({ msg: "Task updated successfully" });

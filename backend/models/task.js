@@ -9,7 +9,7 @@ const taskSchema = mongoose.Schema(
     dueDate: {
       year: { type: Number, required: true },
       month: { type: Number, required: true },
-      date: { type: Number, required: true },
+      day: { type: Number, required: true },
     },
   },
   { timestaps: true }
