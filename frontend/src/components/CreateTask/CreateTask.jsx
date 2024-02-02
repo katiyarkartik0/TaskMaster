@@ -29,10 +29,18 @@ const CreateTask = ({ onTaskCreate }) => {
         dueDate: taskDueDate,
         priority: taskPriority,
       };
-      onTaskCreate(task);
+      onTaskCreate({ ...task, createdAt: new Date() });
       setTaskTitle("");
       setTaskDescription("");
-      await createTask({ accessToken, task: { ...task, taskSignature } });
+      try {
+        await createTask({ accessToken, task: { ...task, taskSignature } });
+        alert("Task created successfully");
+      } catch (err) {
+        alert(
+          "There is some error while creating task, plase check console for details"
+        );
+        console.log(err);
+      }
     } else {
       alert("please provide a valid inputs");
     }
