@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { createTask } from "api/task";
 import { useSelector } from "react-redux";
-import { getAccessToken } from "helpers/selector";
 import { v4 as uuidv4 } from "uuid";
-import Calendar from "components/Calendar/Calendar";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+
+import { createTask } from "api/task";
+import Calendar from "components/Calendar/Calendar";
+
+import { getAccessToken } from "helpers/selector";
 
 import "./CreateTask.css";
 
 const defaultTaskPriority = 3;
+
 const CreateTask = ({ onTaskCreate }) => {
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
@@ -31,7 +34,7 @@ const CreateTask = ({ onTaskCreate }) => {
       setTaskDescription("");
       await createTask({ accessToken, task: { ...task, taskSignature } });
     } else {
-      alert("please provide a valid title");
+      alert("please provide a valid inputs");
     }
   };
 

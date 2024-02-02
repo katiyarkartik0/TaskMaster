@@ -1,12 +1,14 @@
 import Task from "components/Task.js/Task";
-import "./CompletedTasksList.css";
 import React, { useState, useEffect } from "react";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+
 import {
   sortByCreatedDate,
   sortByDueDate,
   sortTasksByPriority,
 } from "helpers/assets";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+
+import "./CompletedTasksList.css";
 
 const TODAY = "today";
 const TOMORROW = "tomorrow";

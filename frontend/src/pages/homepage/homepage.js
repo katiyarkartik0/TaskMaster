@@ -1,11 +1,14 @@
-import Button from "components/Button/Button";
-import Dashboard from "./dashboard/dashboard";
 import { useSelector } from "react-redux";
-import { getAccessToken, getUserData } from "helpers/selector";
-import "./homepage.css";
-import { persistor } from "index";
 import { useNavigate } from "react-router-dom";
-import UnauthorizedPage from "./unauthorizedPage/UnauthorizedPage";
+import { persistor } from "index";
+
+import Button from "components/Button/Button";
+import Dashboard from "pages/homepage/dashboard/dashboard";
+import UnauthorizedPage from "pages/homepage/unauthorizedPage/UnauthorizedPage";
+
+import { getAccessToken, getUserData } from "helpers/selector";
+
+import "./homepage.css";
 
 const HomePage = () => {
   const navigate = useNavigate();

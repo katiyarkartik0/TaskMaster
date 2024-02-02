@@ -1,14 +1,16 @@
-import CreateTask from "components/CreateTask/CreateTask";
-import Task from "components/Task.js/Task";
 import React, { useCallback, useEffect, useState, useMemo } from "react";
-import "./dashboard.css";
-import { fetchTasks } from "api/task";
 import { useSelector } from "react-redux";
-import { getAccessToken } from "helpers/selector";
-import { Loader } from "utils/Loader/Loader";
+import { PieChart } from "@mui/x-charts/PieChart";
+
+import { fetchTasks } from "api/task";
+import CreateTask from "components/CreateTask/CreateTask";
 import CompletedTasksList from "components/TaskList/Completed/CompletedTasksList";
 import PendingTasksList from "components/TaskList/Pending/PendingTasksList";
-import { PieChart } from "@mui/x-charts/PieChart";
+
+import { getAccessToken } from "helpers/selector";
+import { Loader } from "utils/Loader/Loader";
+
+import "./dashboard.css";
 
 const Dashboard = () => {
   const [tasks, setTasks] = useState([]);

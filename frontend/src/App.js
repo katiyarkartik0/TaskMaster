@@ -1,10 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
-import AuthenticationPage from "./pages/auth/authenticationPage";
+
+import AuthenticationPage from "pages/auth/authenticationPage";
 import HomePage from "pages/homepage/homepage";
 import UnauthorizedPage from "pages/homepage/unauthorizedPage/UnauthorizedPage";
 import { OnBoarding } from "pages/onBoarding/OnBoarding";
-import React, { useEffect } from "react";
+
+import "./App.css";
 
 function App() {
   return (

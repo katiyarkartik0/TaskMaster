@@ -1,15 +1,17 @@
-import { createPortal } from "react-dom";
-import "./Modal.css";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import Button from "components/Button/Button";
-import { getAccessToken } from "helpers/selector";
-import { updateTask } from "api/task";
+import { createPortal } from "react-dom";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
+import { updateTask } from "api/task";
+import Button from "components/Button/Button";
+import Calendar from "components/Calendar/Calendar";
+
+import { getAccessToken } from "helpers/selector";
 import pendingClock from "utils/icons/pendingClock.png";
 import completed from "utils/icons/completedIcon.png";
-import Calendar from "components/Calendar/Calendar";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+
+import "./Modal.css";
 
 export const Modal = ({ toggleModal, task, status }) => {
   const { title, description, isCompleted, dueDate, priority } = task;

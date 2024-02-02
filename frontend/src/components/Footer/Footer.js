@@ -6,8 +6,11 @@ import {
   FaTwitter,
   FaGithub,
 } from "react-icons/fa";
-import "./Footer.css";
+
 import mernLogo from "utils/icons/MERN-logo.png";
+
+import "./Footer.css";
+
 const Footer = () => {
   return (
     <footer className="footer">

@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import "./Task.css";
-import Button from "components/Button/Button";
-import { deleteTask, updateTask } from "api/task";
 import { useSelector } from "react-redux";
+
+import { deleteTask, updateTask } from "api/task";
+import Button from "components/Button/Button";
+import { Modal } from "components/ModalComponent/Modal";
+
 import { getAccessToken } from "helpers/selector";
 import pendingClock from "utils/icons/pendingClock.png";
 import completed from "utils/icons/completedIcon.png";
-import { Modal } from "components/ModalComponent/Modal";
+
+import "./Task.css";
 
 const deleteButtonStyles = { "margin-left": "5px", "background-color": "red" };
 const editButtonStyles = { "margin-left": "5px", "background-color": "green" };

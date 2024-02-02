@@ -4,7 +4,6 @@ import { userSignup } from "api/auth";
 import "./SignupForm.css";
 import Button from "components/Button/Button";
 import { useDispatch } from "react-redux";
-// import { setToast } from "store/slices/toastSlice";
 import { fieldValidation } from "helpers/validator";
 import { Loader } from "utils/Loader/Loader";
 
