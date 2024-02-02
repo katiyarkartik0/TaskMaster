@@ -95,7 +95,7 @@ export const OnBoarding = () => {
             return <OnBoardingItem item={item} width={"100%"} />;
           })}
         </div>
-        <Button text={"Skip onboarding"} onClickEvent={() => navigate("/")} />
+        <Button text={"Skip onboarding"} onClickEvent={() => navigate("/auth")} />
 
         <div className="carousel-buttons">
           <button
